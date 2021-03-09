@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button {
+      height: 40px;
+      border: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0060e5;
+      color: white;
+      border-radius: 5px;
+      padding: 0 20px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #42c184;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button.disabled {
+      background-color: gray;
+      color: green;
+      cursor: not-allowed;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .container.hide{
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    #popup-selecter {
+      width: 500px;
+      height: 600px;
+      position: absolute;
+      top: 100px;
+      left: 300px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+  </style>
+</head>
+
+<body>
+  <button id="trigger-call-api" type="click">Get List</button>
+  <div class="container hide">
+    <div id="popup-selecter">
+      <iframe id="gem-arv6-portal" style="width: 100%; height: 100%;" frameBorder="0" srcdoc="<!doctype html>
+          <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>ARv6 Sections List</title>
+            <style>
+              #gem-arv6-portal{
+                width: 100%;
+                height: 100%;
+              }
+              .section_list{
+                width:100%;
+                height: 100%;
+                max-width: 500px;
+                max-height: 600px;
+                background:white;
+                color: black
+              }
+      
+            </style>
+          </head>
+          <body>
+            <div class="section_list">
+              <ul>
+                <li>Section 1</li>
+                <li>Section 2</li>
+                <li>Section 3</li>
+                <li>Section 4</li>
+                <li>Section 5</li>
+                <li>Section 6</li>
+              </ul>
+            </div>
+          </body>
+        </html>
+        "></iframe>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script src="./arv6.js"></script>
+  <script src="./gempage.js"></script>
+</body>
+
+</html>
