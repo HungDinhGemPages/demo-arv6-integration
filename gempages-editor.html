@@ -48,58 +48,73 @@
       width: 500px;
       height: 600px;
       position: absolute;
-      top: 100px;
+      top: 40px;
       left: 300px;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    code { 
+      font-family: monospace;
+    }
+    .display_container{
+      background: #eee;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .display_container h4{
+      margin-top: 0;
+    }
+    .gem_head {
+      grid-area: topbar;
+      background:#3333;
+    }
+    .gem_sidebar {
+      grid-area: sidebar;
+      background:#3333;
+    }
+    .gem_content {
+      grid-area: main;
+      padding: 10px;
+    }
+    .gem_container {
+      width: 100%;
+      height: 90vh;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: 60px 1fr;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      grid-template-areas: 
+        "topbar topbar"
+        "sidebar main"
+    }
+    body{
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      
     }
   </style>
 </head>
 
 <body>
-  <button id="trigger-call-api" type="click">Get List</button>
-  <div class="container hide">
-    <div id="popup-selecter">
-      <iframe id="gem-arv6-portal" style="width: 100%; height: 100%;" frameBorder="0" srcdoc="<!doctype html>
-          <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>ARv6 Sections List</title>
-            <style>
-              #gem-arv6-portal{
-                width: 100%;
-                height: 100%;
-              }
-              .section_list{
-                width:100%;
-                height: 100%;
-                max-width: 500px;
-                max-height: 600px;
-                background:white;
-                color: black
-              }
-      
-            </style>
-          </head>
-          <body>
-            <div class="section_list">
-              <ul>
-                <li>Section 1</li>
-                <li>Section 2</li>
-                <li>Section 3</li>
-                <li>Section 4</li>
-                <li>Section 5</li>
-                <li>Section 6</li>
-              </ul>
-            </div>
-          </body>
-        </html>
-        "></iframe>
+  <div class="gem_container">
+    <div class="gem_head"></div>
+    <div class="gem_sidebar"></div>
+    <div class="gem_content">
+      <h3>Gempage Editor</h3>
+      <button id="trigger-call-api" type="click">Get List</button>
+      <div class="display_container">
+        <h4>Selected</h4>
+        <code id="displayer"></code>
+      </div>
+      <div class="container hide">
+        <div id="popup-selecter">
+          <iframe id="gem-arv6-portal" style="width: 100%; height: 100%;" frameBorder="0" 
+          src ="./section-list.html"></iframe>
+        </div>
+      </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-  <script src="./arv6.js"></script>
   <script src="./gempage.js"></script>
 </body>
 
