@@ -9,7 +9,9 @@
   const $container = gd.getElementsByClassName("container");
   const $popup = gd.getElementById("popup-selecter");
   const $button = gd.getElementById("trigger-call-api");
-
+  const displayer = gd.getElementById("displayer");
+  const $displayContainer = gd.getElementsByClassName("display_container");
+  let resultReceipted = "";
   $button.addEventListener("click", function () {
     [].forEach.call($container, function (el) {
       el.className = el.className.replace(/hide/, "");
@@ -25,19 +27,30 @@
   });
 
   const displayReceivedData = (data) => {
-    if(data=="close-popup"){
-      gd.getElementById("displayer").innerHTML = "";
-      [].forEach.call($container, function (el) {
-        el.className = "container hide";
-      });
-      [].forEach.call($popup, function (el) {
-        el.className ="hide";
-      });
-    }else{
-      let displayStr = "Name: " + data.name + "<br>";
-      displayStr += "Anchor value: " + data.anchor;
-      gd.getElementById("displayer").innerHTML = displayStr;
+    if (data == "no-select" || !data.name) {
+      resultReceipted = "-Not select-";
+    } else {
+      resultReceipted = "Name: " + data.name + "<br>";
+      resultReceipted += "Anchor value: " + data.anchor;
     }
+    closePopup();
+    displayer.innerHTML = resultReceipted;
+    [].forEach.call($displayContainer, function (el) {
+      el.className = "display_container higthlight";
+    });
+    setTimeout(() => {
+      [].forEach.call($displayContainer, function (el) {
+        el.className = "display_container";
+      });
+    }, 800);
+  }
+  const closePopup = () => {
+    [].forEach.call($container, function (el) {
+      el.className = "container hide";
+    });
+    [].forEach.call($popup, function (el) {
+      el.className = "hide";
+    });
   }
 
 })(document);

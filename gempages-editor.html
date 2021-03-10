@@ -62,8 +62,14 @@
     }
     .display_container{
       background: #eee;
-      border: 1px solid #ddd;
+      border: 2px solid #ddd;
       padding: 10px;
+    }
+    .display_container.higthlight{
+      background: #eee;
+      border: 2px solid rgb(52, 165, 140);
+      padding: 10px;
+      box-shadow: 0 0 10px rgb(52, 165, 140);
     }
     .display_container h4{
       margin-top: 0;
@@ -108,7 +114,7 @@
     <div class="gem_content">
       <h3>Gempage Editor</h3>
       <button id="trigger-call-api" type="click">Get List</button>
-      <div class="display_container">
+      <div style="margin-top: 10px;" class="display_container">
         <h4>Selected</h4>
         <code id="displayer"></code>
       </div>

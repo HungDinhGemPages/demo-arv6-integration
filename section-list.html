@@ -145,7 +145,7 @@
     <p>- Hình thức hiển thị do AR quy định</p>
     <p>- Danh sách Section được fill và hiển thị bởi AR</p>
     <p>- Có thể cung cấp tính năng Search/Filter</p>
-    <p>-(Click vào nút Insert bên dưới để bắn Event)-</p>
+    <p>-(Click vào nút Insert bên dưới để "bắn" Event)-</p>
   </div>
   <div class="popup_footer">
     <button class="deactive" style="margin-right: 10px;" onclick="closePopup()">Cancel</button>
@@ -153,12 +153,13 @@
   </div>
   <script>
     let currentSelect;
+    let confirmValue;
     const SECTIONS = [
       { id: 969, name: "Carousel Slider 1", anchor: "shopify-section-alireviews-widget-969" },
       { id: 968, name: "Review Pops 1", anchor: "shopify-section-alireviews-widget-968" },
       { id: 1059, name: "Carousel Slider 2", anchor: "shopify-section-alireviews-widget-1059" },
       { id: 1060, name: "Review Pops 2", anchor: "shopify-section-alireviews-widget-1060" }
-    ]
+    ];
     generateItems();
     function generateItems() {
       const $sectionContainer = document.getElementById("section-list-container");
@@ -183,7 +184,7 @@
         items.forEach(item => {
           item.className = "";
         });
-        event.currentTarget.className += "active"
+        event.currentTarget.className += "active";
       }
       SECTIONS.forEach(ss => {
 
@@ -193,19 +194,23 @@
           currentSelect = section;
         }
       });
-      // if (currentSelect) {
-      //   fireEvent(currentSelect);
-      // }
     }
     function fireEvent() {
       if (currentSelect) {
-        const event = new CustomEvent('GemARv6Portal', { detail: currentSelect })
-        window.parent.document.dispatchEvent(event)
+        confirmValue = currentSelect
+        const event = new CustomEvent('GemARv6Portal', { detail: currentSelect });
+        window.parent.document.dispatchEvent(event);
       }
     }
     function closePopup() {
-      const event = new CustomEvent('GemARv6Portal', { detail: "close-popup" })
-      window.parent.document.dispatchEvent(event)
+      let data = {};
+      if (!confirmValue) {
+        data = { detail: "no-select" };
+      } else {
+        data = { detail: confirmValue };
+      }
+      const event = new CustomEvent('GemARv6Portal', data);
+      window.parent.document.dispatchEvent(event);
     }
   </script>
 </body>
