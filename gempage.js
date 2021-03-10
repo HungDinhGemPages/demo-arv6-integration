@@ -25,9 +25,19 @@
   });
 
   const displayReceivedData = (data) => {
-    let displayStr = "Name: " + data.name + "<br>";
-    displayStr += "Anchor value: " + data.anchor;
-    gd.getElementById("displayer").innerHTML = displayStr;
+    if(data=="close-popup"){
+      gd.getElementById("displayer").innerHTML = "";
+      [].forEach.call($container, function (el) {
+        el.className = "container hide";
+      });
+      [].forEach.call($popup, function (el) {
+        el.className ="hide";
+      });
+    }else{
+      let displayStr = "Name: " + data.name + "<br>";
+      displayStr += "Anchor value: " + data.anchor;
+      gd.getElementById("displayer").innerHTML = displayStr;
+    }
   }
 
 })(document);
